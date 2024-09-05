@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="width: 80%; margin: 0 auto; padding: 20px;">
+
+    <!-- Ссылка на возврат к списку контактов -->
+    <a href="{{ url_for('index') }}" style="display: inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+        Вернуться к списку контактов
+    </a>
+
+    {% if errors %}
+    <div class="error-messages" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 15px; border-radius: 5px;">
+        <strong>Ошибки:</strong>
+        <ul style="margin-top: 10px;">
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if success %}
+    <div class="success-message" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; margin-bottom: 15px; border-radius: 5px;">
+        Контакт успешно добавлен!
+    </div>
+    {% endif %}
+
+    <form method="post" action="/create" style="display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" name="phone_number" placeholder="номер телефона" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="text" name="name" placeholder="имя контакта" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="email" name="email" placeholder="почта" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="text" name="address" placeholder="адрес" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <button type="submit" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Добавить
+        </button>
+    </form>
+</div>
+{% endblock %}
