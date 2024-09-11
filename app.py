@@ -1,4 +1,12 @@
-from app import db
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
+from flask import Flask
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///contacts.db"
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 class Contact(db.Model):
@@ -7,3 +15,5 @@ class Contact(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=True)
     address = db.Column(db.String(100), nullable=True)
+    group_name = db.Column(db.String(100), nullable=False)
+

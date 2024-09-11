@@ -7,7 +7,7 @@ class ContactValidator:
         self._name_validations()
 
     def is_success(self):
-        return len(self._errors) == 0
+        return not self._errors
 
     def show_errors(self):
         return self._errors
